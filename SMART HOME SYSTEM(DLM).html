@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #3498db;
+        }
+        .instructions {
+            margin-bottom: 20px;
+        }
+        .blue-box {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SMART HOME SYSTEM</h1>
+        <h2>SECTION A: General Instructions</h2>
+        <p class="instructions">Read the given scenario carefully. Identify the number of inputs and outputs and identify the appropriate variable names. Formulate the truth table and provide the simplified Boolean expression and the circuit implementation based on the constraint given.</p>
+        <p><strong>Duration:</strong> 40 minutes</p>
+        <p><strong>Score:</strong> 52 points</p>
+        <p><strong>The entire design is split into 3 sections:</strong></p>
+        <ul>
+            <li>Section A:  General Instructions</li>
+            <li>Section B: Scenario : smart home system</li>
+            <li>Section C: Truth table formulation (32 points) – 20 minutes </li>
+            <li>Section D: Find the Simplified Boolean Expression (15points) – 10 minutes</li>
+            <li>Section E: Circuit Implementation (5 points) – 10 minutes</li>
+            <li>Section F: Feedback form and total score</li>
+        </ul>
+        <p><strong>Timing and score constraints:</strong></p>
+        <ul>
+            <li>Total time for the entire steps is 40 minutes.</li>
+            <li>Points will be awarded based on correctness and completeness of the answer.</li>
+            <li>Incorrect answers may result in deduction of points or no points awarded.</li>
+            <li>Late submissions may incur penalties.</li>
+        </ul>
+        <div>
+            <label for="email">Enter your email:</label>
+            <input id="email" type="text">
+            <label for="reg">Enter your Register number</label>
+            <input id="reg" type="text">
+            <button id="submitBtn">Submit</button>
+        </div>
+        <div id="message"></div>
+        
+        <script>
+            document.getElementById("submitBtn").addEventListener("click", function() {
+                document.getElementById("message").innerText = "SUBMIT SUCCESFULLY";
+            });
+        </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home System - Scenario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #3498db;
+        }
+        .scenario {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .blue-box {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SECTION B - SCENARIO: Smart Home System</h1>
+        <div class="scenario">
+            <p>A smart home system is controlled automatically based on certain measures,such as water leakage, short circuit , Gas Leakage and fire at home .These are monitored and measured using various sensors .</p>
+            <p> Based on the certain combinations of these measures , the automatic control system will send a emergency message to the owner based on the following measures.</p>
+            <ul>
+                <li>Water leakage (W=1, if any leakage; otherwise 0)</li>
+                <li>Short circuit (C=1 if any shortage; otherwise 0)</li>
+                <li>Gas leak (G=1, if any leakage; else 0)</li>
+                <li>Fire buzzer (F=1; if fire is detected (on); 0, if fire is not detected(Off))</li>
+            </ul>
+            <p>The following the conditions for sending emergency message are:</p>
+            <ol>
+                <li>Gas leak and fire buzzer is on</li>
+                <li>Only the fire buzzer is on</li>
+                <li>Water leakage at any place</li>
+                <li>short circuit and the fire buzzer is on</li>
+            </ol>
+            <p>The automatic control system will send a normal message to the owner based on the following measures:</p>
+            <ul>
+                <li>Bell (B=1, if its rings; otherwise 0)</li>
+                <li>Motion sensor (M=1 if motion is detected; else 0)</li>
+                <li>Post box (P=1, if post is received; else 0)</li>
+                <li>Door (D=1, if open; else 0, if closed)</li>
+            </ul>
+            <p>The following the conditions for sending normal messages are:</p>
+            <ol>
+                <li>Motion is detected and the door is closed</li>
+                <li>Door is closed, bell is ringed, and post is received</li>
+                <li>Bell does not ring, door is open, and motion is detected</li>
+            </ol>
+            <p>The system will provide two outputs such as Emergency (A) and Normal(B). Based on these outputs a message will be sent to the fire station.</p>
+            <p>The condition for sending a message to the fire station is:</p>
+            <ul>
+                <li>If A=1 and B=0</li>
+                <li>If A=1 and B=1</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truth Table Formulation</title>
+    <style>
+        /* CSS to display tables top and bottom */
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .truth-table-wrapper {
+            width: 90%; /* Adjust the width as needed */
+        }
+    </style>
+</head>
+<body>
+    <h2>SECTION C (A) : Truth table formulation for Normal Message [ input : Bell (B), Motion sensor (M),
+         Post box (P), Door (D) and output : Normal message(N) ]</h2>
+    <div id="container">
+        <div class="truth-table-wrapper">
+            <form id="truthTableForm">
+                <table id="truthTable">
+                    <tr>
+                        <th>Input</th>
+                        <th>Output (User Input)</th>
+                        <th>Marks</th>
+                    </tr>
+                    <!-- Dynamically generate 16-bit binary inputs -->
+                </table>
+                <button type="submit">Submit</button>
+                <p id="totalResult"></p>
+            </form>
+        </div>
+	<h2>SECTION C (B) : Truth table formulation for Emergency Message [ input : Fire buzzer(F), Water leak(W), Short circuit(C) ,Gas leak(G) and the Output : Emergency Message ]</h2>
+        <div class="truth-table-wrapper">
+            <form id="truthTableFormCustom">
+                <table id="truthTableCustom">
+                    <tr>
+                        <th>Input</th>
+                        <th>Output (User Input)</th>
+                        <th>Marks</th>
+                    </tr>
+                    <!-- Dynamically generate 16-bit binary inputs -->
+                </table>
+                <button type="submit">Submit</button>
+                <p id="totalResultCustom"></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to generate 16-bit truth table
+        function generateTruthTable() {
+            var table = document.getElementById("truthTable");
+            for (var i = 0; i < 16; i++) {
+                var binaryInput = dec2bin(i); // Convert decimal to binary
+                var row = document.createElement("tr");
+                var inputCell = document.createElement("td");
+                inputCell.textContent = binaryInput;
+                row.appendChild(inputCell);
+                var outputCell = document.createElement("td");
+                var outputInput = document.createElement("input");
+                outputInput.type = "number";
+                outputInput.min = "0";
+                outputInput.max = "1";
+                outputCell.appendChild(outputInput);
+                row.appendChild(outputCell);
+                var marksCell = document.createElement("td");
+                row.appendChild(marksCell);
+                table.appendChild(row);
+            }
+        }
+
+        // Function to convert decimal to binary with leading zeros to ensure 4 bits
+        function dec2bin(dec) {
+            return (dec >>> 0).toString(2).padStart(4, '0');
+        }
+
+        // Event listener for form submission
+        document.getElementById("truthTableForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var rows = document.getElementById("truthTable").getElementsByTagName("tr");
+            var totalPoints = 0;
+            for (var i = 1; i < rows.length; i++) { // Start from index 1 to skip header row
+                var inputCell = rows[i].getElementsByTagName("td")[0];
+                var binaryInput = inputCell.textContent;
+                var outputInput = rows[i].getElementsByTagName("input")[0];
+                var answer = outputInput.value;
+                var correctOutput = calculateCorrectOutput(binaryInput);
+                if (answer === correctOutput) {
+                    totalPoints++; // Increment total points for correct output
+                    rows[i].getElementsByTagName("td")[2].textContent = "1"; // Set marks to 1
+                } else {
+                    rows[i].getElementsByTagName("td")[2].textContent = "0"; // Set marks to 0 for incorrect output
+                }
+            }
+            // Display the total result to the user
+            document.getElementById("totalResult").textContent = "Total Points: " + totalPoints;
+        });
+
+        // Function to calculate the correct output based on input
+        function calculateCorrectOutput(binaryInput) {
+            var outputsZero = ["0000", "0001", "0010", "0011", "1000", "1001", "1011", "1101", "1111"];
+            return outputsZero.includes(binaryInput) ? "0" : "1";
+        }
+
+        // Function to generate 16-bit truth table for custom message
+        function generateTruthTableCustom() {
+            var table = document.getElementById("truthTableCustom");
+            for (var i = 0; i < 16; i++) {
+                var binaryInput = dec2bin(i); // Convert decimal to binary
+                var row = document.createElement("tr");
+                var inputCell = document.createElement("td");
+                inputCell.textContent = binaryInput;
+                row.appendChild(inputCell);
+                var outputCell = document.createElement("td");
+                var outputInput = document.createElement("input");
+                outputInput.type = "number";
+                outputInput.min = "0";
+                outputInput.max = "1";
+                outputCell.appendChild(outputInput);
+                row.appendChild(outputCell);
+                var marksCell = document.createElement("td");
+                row.appendChild(marksCell);
+                table.appendChild(row);
+            }
+        }
+
+        // Event listener for form submission for custom message
+        document.getElementById("truthTableFormCustom").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var rows = document.getElementById("truthTableCustom").getElementsByTagName("tr");
+            var totalPoints = 0;
+            for (var i = 1; i < rows.length; i++) { // Start from index 1 to skip header row
+                var inputCell = rows[i].getElementsByTagName("td")[0];
+                var binaryInput = inputCell.textContent;
+                var outputInput = rows[i].getElementsByTagName("input")[0];
+                var answer = outputInput.value;
+                var correctOutput = calculateCorrectOutputCustom(binaryInput);
+                if (answer === correctOutput) {
+                    totalPoints++; // Increment total points for correct output
+                    rows[i].getElementsByTagName("td")[2].textContent = "1"; // Set marks to 1
+                } else {
+                    rows[i].getElementsByTagName("td")[2].textContent = "0"; // Set marks to 0 for incorrect output
+                }
+            }
+            // Display the total result to the user
+            document.getElementById("totalResultCustom").textContent = "Total Points: " + totalPoints;
+        });
+
+        // Function to calculate the correct output based on input for custom message
+        function calculateCorrectOutputCustom(binaryInput) {
+            var outputsCustom = ["0000", "0010", "0100", "0110"];
+            return outputsCustom.includes(binaryInput) ? "0" : "1";
+        }
+
+        // Call function to generate truth tables when the page loads
+        window.onload = function() {
+            generateTruthTable();
+            generateTruthTableCustom();
+        };
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency Condition Quiz</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  h1 {
+    text-align: center;
+  }
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .question {
+    margin-bottom: 10px;
+  }
+  .submit-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .score {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  .time-limit {
+    text-align: center;
+    color: dodgerblue;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+</style>
+</head>
+<body>
+
+<h1>Section D and E - Find Simplified Boolean Expression and Circuit Implementation</h1>
+<div class="time-limit" id="time-limit"></div>
+<p> NOTE : Provide your boolean expression in lower case letters ( small letters) and in alphabetical order. </p>
+<p>FOR EXAMPLE : 1.If the expression  is d'b+c'b+a'b , while entering your expression should be  a'b+bc'+bd'..........
+<p>              2.If the expression  is ab'+adc+b'c , while entering your expression should be ab'+acd+b'c </p>
+</p>
+<form id="quiz-form">
+  <div class="question">
+    <p>Question 1: WHAT IS THE KARNAUGH MAP EXPRESSION FOR EMERGENCY MESSAGE ? ? </p>
+    <input type="text" name="q1" placeholder="Enter your answer">
+  </div>
+ 
+  <div class="question">
+    <p>Question 2: WHAT IS THE KARNAUGH MAP EXPRESSION FOR NORMAL MESSAGE ?</p>
+    <input type="text" name="q2" placeholder="Enter your answer">
+  </div>
+
+  <div class="question">
+    <p>Question 3: Let's consider the output of emergency is “A” and the output of normal is “B”. Now we need to send a message to the fire station. The condition for sending a message to the fire station is:</p>
+    <p>* If A=1 and B=0</p>
+    <p>* If A=1 and B=1</p>
+    <p>What will be the output of the fire station?</p>
+    <input type="text" name="q3" placeholder="Enter your answer">
+  </div>
+
+  <div class="question">
+    <p>Question 4: Which combination of mux is used for emergency, normal, and fire station?</p>
+    <input type="radio" name="q4" value="A"> A) 8:1 and 2:1<br>
+    <input type="radio" name="q4" value="B"> B) 16:1 and 2:1<br>
+    <input type="radio" name="q4" value="C"> C) only 4:1<br>
+    <input type="radio" name="q4" value="D"> D) all 8:1<br>
+  </div>
+
+  <button type="submit" class="submit-btn">Submit</button>
+</form>
+
+<div class="score" id="score"></div>
+
+<script>
+// Set the countdown time to 40 minutes
+const countdownTime = 40 * 60; // 40 minutes in seconds
+
+// Display the countdown timer
+const timeLimitElement = document.getElementById("time-limit");
+function updateTimerDisplay(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+  timeLimitElement.textContent = `Time Left: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+// Update timer display every second
+let remainingTime = countdownTime;
+const timerInterval = setInterval(() => {
+  updateTimerDisplay(remainingTime);
+  remainingTime--;
+  
+  // Automatically submit the form when time runs out
+  if (remainingTime < 0) {
+    clearInterval(timerInterval);
+    document.getElementById("quiz-form").submit();
+  }
+}, 1000);
+
+document.getElementById("quiz-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+  
+  // Get user's answers
+  const q1Answer = document.querySelector('input[name="q1"]').value.toLowerCase();
+  const q2Answer = document.querySelector('input[name="q2"]').value.toLowerCase();
+  const q3Answer = document.querySelector('input[name="q3"]').value.toLowerCase();
+  const q4Answer = document.querySelector('input[name="q4"]:checked').value;
+  
+  // Evaluate answers
+  let score = 0;
+  if (q1Answer === "cf+c'f'gw'+fg'+w") {
+    score += 5;
+  }
+  if (q2Answer === "bd'p+b'm+d'm") {
+    score += 5;
+  }
+  if (q3Answer === "a") {
+    score += 5;
+  }
+  if (q4Answer === "B") {
+    score += 5;
+  }
+  
+  // Display score
+  document.getElementById("score").textContent = `Your score: ${score}/20`;
+});
+</script>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home System Design Results</title>
+</head>
+<body>
+    <h1>SECTION F : Feedback form and total score</h1>
+  
+    <!-- Feedback form -->
+    <h2>Submit Feedback to see your total score</h2>
+    <form id="feedbackForm" action="submit_feedback.php" method="post">
+        <label for="feedback">Feedback:</label><br>
+        <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Success message -->
+    <div id="successMessage" style="display: none;">
+        <p>Feedback submitted successfully!</p>
+    </div>
+
+    <script>
+        // Function to handle form submission
+        document.getElementById("feedbackForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+
+            // You can add code here to submit the form data using AJAX if needed
+
+            // Calculate total points
+            const truthTablePoints = calculateTruthTablePoints();
+            const quizScore = parseInt(document.getElementById("score").textContent.split('/')[0].split(' ')[2]); // Extract quiz score
+            const totalPoints = truthTablePoints + quizScore;
+
+            // Display total points
+            alert("Total Points: " + totalPoints);
+
+            // Display success message
+            document.getElementById("successMessage").style.display = "block";
+        });
+
+        // Function to calculate total points from truth tables
+        function calculateTruthTablePoints() {
+            // Calculate total points from both truth tables
+            const totalPointsCustom = calculateTruthTableCustomPoints();
+            const totalPoints = calculateTruthTablePointsDefault() + totalPointsCustom;
+            return totalPoints;
+        }
+
+        // Function to calculate total points from default truth table
+        function calculateTruthTablePointsDefault() {
+            var rows = document.getElementById("truthTable").getElementsByTagName("tr");
+            var totalPoints = 0;
+            for (var i = 1; i < rows.length; i++) { // Start from index 1 to skip header row
+                var marks = parseInt(rows[i].getElementsByTagName("td")[2].textContent);
+                totalPoints += marks;
+            }
+            return totalPoints;
+        }
+
+        // Function to calculate total points from custom truth table
+        function calculateTruthTableCustomPoints() {
+            var rows = document.getElementById("truthTableCustom").getElementsByTagName("tr");
+            var totalPoints = 0;
+            for (var i = 1; i < rows.length; i++) { // Start from index 1 to skip header row
+                var marks = parseInt(rows[i].getElementsByTagName("td")[2].textContent);
+                totalPoints += marks;
+            }
+            return totalPoints;
+        }
+    </script>
+</body>
+</html>
+
+
